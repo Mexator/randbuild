@@ -3,6 +3,7 @@ package com.mexator.randbuild.random
 import kotlin.random.Random
 
 fun <T> weightedRandom(list: List<T>, weight: (T) -> Int): T {
+    if (list.size == 1) return list.first()
     val weights = list.map { weight(it) }
 
     // Cumulative Distribution Function
