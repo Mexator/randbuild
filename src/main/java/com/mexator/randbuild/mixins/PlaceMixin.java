@@ -1,7 +1,7 @@
 package com.mexator.randbuild.mixins;
 
 import com.mexator.randbuild.PlacedBlockTracker;
-import com.mexator.randbuild.PlacedBlockTrackerImpl;
+import com.mexator.randbuild.RandBuildMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
@@ -16,11 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Block.class)
 public class PlaceMixin {
+    private final PlacedBlockTracker tracker = RandBuildMod.INSTANCE.getPlaceBlockTracker();
 
     @Inject(at = @At("HEAD"), method = "onPlaced")
     void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack, CallbackInfo ci) {
-        PlacedBlockTracker tracker = PlacedBlockTrackerImpl.INSTANCE;
         if (placer == null) return;
-        tracker.onBlockPlaced((Block) (Object) this, placer);
+        tracker.onBlockPlaced(placer);
     }
 }
