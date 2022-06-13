@@ -1,5 +1,6 @@
 package com.mexator.randbuild
 
+import com.mexator.randbuild.random.BlockRandomizer
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.minecraft.client.MinecraftClient
@@ -8,11 +9,17 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.screen.slot.SlotActionType
 
 @Environment(EnvType.CLIENT)
-class PlacedBlockTracker(private val registry: CheckedSlotsRegistry) {
+class PlacedBlockTracker(
+    private val randomizer: BlockRandomizer
+) {
 
     fun onBlockPlaced(placer: LivingEntity) {
         if (placer is ClientPlayerEntity) {
-            val swapSource = registry.getAllCheckedSlots().random()
+            val swapSource = try {
+                randomizer.goodRandomSlot()
+            } catch (ex: NoSuchElementException) {
+                return
+            }
 
             MinecraftClient.getInstance().interactionManager
                 ?.clickSlot(
