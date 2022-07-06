@@ -4,14 +4,15 @@ import com.mexator.randbuild.CheckedSlotsRegistry
 import net.minecraft.client.MinecraftClient
 
 class BlockRandomizer(private val checkedSlotsRegistry: CheckedSlotsRegistry) {
-    fun goodRandomSlot(): Int {
+    fun goodRandomSlotId(): Int {
         val slots = checkedSlotsRegistry.getAllCheckedSlots()
         if (slots.isEmpty()) throw NoSuchElementException()
 
         val inventory = MinecraftClient.getInstance().player!!.inventory.main
 
-        val nonEmptySlots = slots.filter { inventory[it].isEmpty.not() }
+        val nonEmptySlots = slots.filter { inventory[it.index].isEmpty.not() }
 
-        return weightedRandom(nonEmptySlots) { inventory[it].count }
+        val goodSlot = weightedRandom(nonEmptySlots) { inventory[it.index].count }
+        return goodSlot.id
     }
 }

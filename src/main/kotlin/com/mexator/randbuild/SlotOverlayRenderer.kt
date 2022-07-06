@@ -16,7 +16,7 @@ class SlotOverlayRenderer(private val isSlotHandled: IsSlotHandled) {
 
     fun render(matrices: MatrixStack, slot: Slot, screen: Screen) {
         if (!isSlotHandled(slot)) return
-        if (!CheckedSlotsRegistry.isChecked(slot.index)) return
+        if (!CheckedSlotsRegistry.isChecked(slot)) return
 
         RenderSystem.setShaderTexture(0, SLOT_LOCK_TEXTURE)
         with(screen) {

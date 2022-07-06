@@ -32,7 +32,7 @@ class SlotKeyPressHandler(
 
     private fun handleToggleClick(focusedSlot: Slot) {
         if (isSlotHandled(focusedSlot)) {
-            registry.toggleSlot(focusedSlot.index)
+            registry.toggleSlot(focusedSlot)
         }
     }
 }

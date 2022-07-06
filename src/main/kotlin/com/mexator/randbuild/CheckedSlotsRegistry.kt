@@ -1,9 +1,11 @@
 package com.mexator.randbuild
 
-object CheckedSlotsRegistry {
-    private val slots = HashSet<Int>()
+import net.minecraft.screen.slot.Slot
 
-    fun toggleSlot(slot: Int) {
+object CheckedSlotsRegistry {
+    private val slots = HashSet<Slot>()
+
+    fun toggleSlot(slot: Slot) {
         if (slot !in slots) {
             slots.add(slot)
         } else {
@@ -12,12 +14,12 @@ object CheckedSlotsRegistry {
         println("Toggle slot $slot, now ${slot in slots}")
     }
 
-    fun getAllCheckedSlots(): List<Int> {
+    fun getAllCheckedSlots(): List<Slot> {
         return slots.toList()
     }
 
-    fun isChecked(index: Int): Boolean {
-        return index in slots
+    fun isChecked(slot: Slot): Boolean {
+        return slot in slots
     }
 }
 
