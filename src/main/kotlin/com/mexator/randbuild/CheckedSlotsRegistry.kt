@@ -21,5 +21,9 @@ object CheckedSlotsRegistry {
     fun isChecked(slot: Slot): Boolean {
         return slot in slots
     }
+
+    fun clear() {
+        slots.clear()
+    }
 }
 

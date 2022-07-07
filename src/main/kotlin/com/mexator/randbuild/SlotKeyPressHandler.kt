@@ -1,5 +1,6 @@
 package com.mexator.randbuild
 
+import com.mexator.randbuild.keybindings.Keybindings.toggleSlotBinding
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper
@@ -13,16 +14,6 @@ class SlotKeyPressHandler(
     private val registry: CheckedSlotsRegistry,
     private val isSlotHandled: IsSlotHandled
 ) {
-    companion object {
-        val toggleSlotBinding: KeyBinding = KeyBindingHelper.registerKeyBinding(
-            KeyBinding(
-                "key.slotlock",
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_LEFT_ALT,
-                "key.categories.inventory"
-            )
-        )
-    }
 
     fun handle(focusedSlot: Slot, keyCode: Int, scanCode: Int) {
         if (toggleSlotBinding.matchesKey(keyCode, scanCode)) {
