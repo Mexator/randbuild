@@ -11,7 +11,7 @@ object CheckedSlotsRegistry {
         } else {
             slots.remove(slot)
         }
-        println("Toggle slot $slot, now ${slot in slots}")
+        println("Toggle slot ${slot.id}, now ${slot in slots}")
     }
 
     fun getAllCheckedSlots(): List<Slot> {
@@ -20,6 +20,17 @@ object CheckedSlotsRegistry {
 
     fun isChecked(slot: Slot): Boolean {
         return slot in slots
+    }
+
+    /**
+     * @param slotId from 0-8.
+     */
+    fun isHotbarSlotChecked(slotId: Int): Boolean {
+        for (slot in slots) {
+            // transform inventory window slot ids (9-45) to hotbar ones (0-9)
+            if(slot.id - 36 == slotId) return true
+        }
+        return false
     }
 
     fun clear() {

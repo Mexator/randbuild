@@ -9,7 +9,6 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.network.ClientPlayerEntity
 import net.minecraft.entity.LivingEntity
 import net.minecraft.screen.slot.SlotActionType
-import java.util.*
 import kotlin.NoSuchElementException
 
 @Environment(EnvType.CLIENT)
@@ -24,17 +23,18 @@ class PlacedBlockTracker(
     private var data: SwapRecord? = null
 
     fun onBlockPlaced(placer: LivingEntity) {
-        if (placer is ClientPlayerEntity) {
-            Log.debug(LogCategory.LOG, "Player placed a block from slot ${placer.inventory.selectedSlot}")
-            val swapSource = try {
-                randomizer.goodRandomSlotId()
-            } catch (ex: NoSuchElementException) {
-                return
-            }
+        if (placer !is ClientPlayerEntity) return
+        if (!CheckedSlotsRegistry.isHotbarSlotChecked(placer.inventory.selectedSlot)) return
 
-            Log.debug(LogCategory.LOG, "Swapping slot ${placer.inventory.selectedSlot} and $swapSource")
-            data = SwapRecord(placer,swapSource)
+        Log.debug(LogCategory.LOG, "Player placed a block from slot ${placer.inventory.selectedSlot}")
+        val swapSource = try {
+            randomizer.goodRandomSlotId(placer)
+        } catch (ex: NoSuchElementException) {
+            return
         }
+
+        Log.debug(LogCategory.LOG, "Swapping slot ${placer.inventory.selectedSlot} and $swapSource")
+        data = SwapRecord(placer,swapSource)
     }
 
     fun onServerNotified() {
