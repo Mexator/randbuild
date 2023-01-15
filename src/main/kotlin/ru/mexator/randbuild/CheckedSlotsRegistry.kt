@@ -1,4 +1,4 @@
-package com.mexator.randbuild
+package ru.mexator.randbuild
 
 import net.minecraft.screen.slot.Slot
 

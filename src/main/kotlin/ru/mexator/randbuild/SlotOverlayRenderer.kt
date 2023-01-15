@@ -1,4 +1,4 @@
-package com.mexator.randbuild
+package ru.mexator.randbuild
 
 import com.mojang.blaze3d.systems.RenderSystem
 import net.fabricmc.api.EnvType

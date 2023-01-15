@@ -1,13 +1,9 @@
-package com.mexator.randbuild
+package ru.mexator.randbuild
 
-import com.mexator.randbuild.keybindings.Keybindings.toggleSlotBinding
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper
-import net.minecraft.client.option.KeyBinding
-import net.minecraft.client.util.InputUtil
 import net.minecraft.screen.slot.Slot
-import org.lwjgl.glfw.GLFW
+import ru.mexator.randbuild.keybindings.Keybindings.toggleSlotBinding
 
 @Environment(EnvType.CLIENT)
 class SlotKeyPressHandler(

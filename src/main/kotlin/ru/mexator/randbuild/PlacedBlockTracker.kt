@@ -1,6 +1,5 @@
-package com.mexator.randbuild
+package ru.mexator.randbuild
 
-import com.mexator.randbuild.random.BlockRandomizer
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.fabricmc.loader.impl.util.log.Log
@@ -9,8 +8,15 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.network.ClientPlayerEntity
 import net.minecraft.entity.LivingEntity
 import net.minecraft.screen.slot.SlotActionType
-import kotlin.NoSuchElementException
+import ru.mexator.randbuild.random.BlockRandomizer
 
+/**
+ * Whenever player places a block ([onBlockPlaced] call), we wait for server to process placing ([onServerNotified]
+ * call) and then replace stack in player's hand.
+ *
+ * We can't replace stack before server is notified. Otherwise, places block will be the new one. From the player's
+ * perspective it feels weird.
+ */
 @Environment(EnvType.CLIENT)
 class PlacedBlockTracker(
     private val randomizer: BlockRandomizer

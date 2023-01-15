@@ -1,7 +1,5 @@
-package com.mexator.randbuild.mixins;
+package ru.mexator.randbuild.mixins;
 
-import com.mexator.randbuild.PlacedBlockTracker;
-import com.mexator.randbuild.RandBuildMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
@@ -13,6 +11,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import ru.mexator.randbuild.PlacedBlockTracker;
+import ru.mexator.randbuild.RandBuildMod;
 
 @Mixin(Block.class)
 public class PlaceMixin {

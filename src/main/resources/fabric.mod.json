@@ -19,7 +19,7 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "com.mexator.randbuild.RandBuildMod"
+        "value": "ru.mexator.randbuild.RandBuildMod"
       }
     ]
   },

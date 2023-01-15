@@ -1,7 +1,7 @@
-package com.mexator.randbuild.random
+package ru.mexator.randbuild.random
 
-import com.mexator.randbuild.CheckedSlotsRegistry
 import net.minecraft.client.network.ClientPlayerEntity
+import ru.mexator.randbuild.CheckedSlotsRegistry
 
 class BlockRandomizer(private val checkedSlotsRegistry: CheckedSlotsRegistry) {
     fun goodRandomSlotId(player: ClientPlayerEntity): Int {

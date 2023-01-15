@@ -1,6 +1,5 @@
-package com.mexator.randbuild.mixins;
+package ru.mexator.randbuild.mixins;
 
-import com.mexator.randbuild.RandBuildMod;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
@@ -15,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import ru.mexator.randbuild.RandBuildMod;
 
 @Environment(EnvType.CLIENT)
 @Mixin(HandledScreen.class)

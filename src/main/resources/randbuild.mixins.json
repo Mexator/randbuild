@@ -1,14 +1,14 @@
 {
   "required": true,
-  "package": "com.mexator.randbuild.mixins",
+  "package": "ru.mexator.randbuild.mixins",
   "compatibilityLevel": "JAVA_17",
   "injectors": {
     "defaultRequire": 1
   },
   "mixins": [],
   "client": [
+    "CPIMMixin",
     "PlaceMixin",
-    "SlotMixin",
-    "CPIMMixin"
+    "SlotMixin"
   ]
 }

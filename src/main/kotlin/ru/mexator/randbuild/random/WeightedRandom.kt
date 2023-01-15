@@ -1,4 +1,4 @@
-package com.mexator.randbuild.random
+package ru.mexator.randbuild.random
 
 import kotlin.random.Random
 
