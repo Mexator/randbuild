@@ -16,7 +16,7 @@
   "icon": "assets/randbuild/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
+    "client": [
       {
         "adapter": "kotlin",
         "value": "ru.mexator.randbuild.RandBuildMod"
@@ -29,6 +29,7 @@
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",
+    "fabric-key-binding-api-v1": "*",
     "fabric-language-kotlin": ">=1.7.4+kotlin.1.6.21",
     "minecraft": "1.19.x",
     "java": ">=17"
