@@ -2,8 +2,6 @@ package ru.mexator.randbuild
 
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
-import net.fabricmc.loader.impl.util.log.Log
-import net.fabricmc.loader.impl.util.log.LogCategory
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.network.ClientPlayerEntity
 import net.minecraft.entity.LivingEntity
@@ -32,15 +30,15 @@ class PlacedBlockTracker(
         if (placer !is ClientPlayerEntity) return
         if (!CheckedSlotsRegistry.isHotbarSlotChecked(placer.inventory.selectedSlot)) return
 
-        Log.debug(LogCategory.LOG, "Player placed a block from slot ${placer.inventory.selectedSlot}")
+        println("Player placed a block from slot ${placer.inventory.selectedSlot}")
         val swapSource = try {
             randomizer.goodRandomSlotId(placer)
         } catch (ex: NoSuchElementException) {
             return
         }
 
-        Log.debug(LogCategory.LOG, "Swapping slot ${placer.inventory.selectedSlot} and $swapSource")
         data = SwapRecord(placer,swapSource)
+        println("Will swap slot ${data?.player?.inventory?.selectedSlot} and ${data?.swapSlotId}")
     }
 
     fun onServerNotified() {
@@ -54,6 +52,7 @@ class PlacedBlockTracker(
                     player
                 )
         }
+        println("Swapped slot ${data?.player?.inventory?.selectedSlot} and ${data?.swapSlotId}")
         data = null
     }
 }
