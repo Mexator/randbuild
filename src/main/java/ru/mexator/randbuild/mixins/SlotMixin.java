@@ -2,9 +2,9 @@ package ru.mexator.randbuild.mixins;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
@@ -34,7 +34,7 @@ public abstract class SlotMixin extends Screen {
     }
 
     @Inject(at = @At(value = "RETURN", ordinal = 1), method = "drawSlot")
-    public void drawSlot(MatrixStack matrices, Slot slot, CallbackInfo info) {
-        RandBuildMod.INSTANCE.getOverlayRenderer().render(matrices, slot, this);
+    public void drawSlot(DrawContext context, Slot slot, CallbackInfo ci) {
+        RandBuildMod.INSTANCE.getOverlayRenderer().render(context, slot);
     }
 }
